@@ -1,0 +1,72 @@
+/**
+ * █▀█ █▀█ █▀▀ █
+ * █▀▄ █▄█ █▀░ █
+ */
+
+configuration {
+    modi: "drun,run,filebrowser,window";
+    show-icons: true;
+    display-drun: "";
+    display-run: "";
+    display-filebrowser: "";
+    display-window: "";
+    drun-display-format: "{name}";
+    window-format: "{w} · {c} · {t}";
+}
+
+* {
+    font: "CaskaydiaCove Nerd Font 10";
+    bg: #1e1e2e;
+    fg: #cdd6f4;
+    accent: #89b4fa;
+    background-color: transparent;
+    text-color: @fg;
+}
+
+window {
+    width: 600px;
+    height: 450px;
+    background-color: @bg;
+    border: 2px;
+    border-color: @accent;
+    border-radius: 12px;
+}
+
+mainbox {
+    padding: 20px;
+    children: [inputbar, listview];
+}
+
+inputbar {
+    padding: 10px;
+    background-color: #313244;
+    border-radius: 8px;
+    margin: 0 0 20px 0;
+    children: [prompt, entry];
+}
+
+prompt {
+    padding: 0 10px 0 0;
+    text-color: @accent;
+}
+
+listview {
+    columns: 2;
+    spacing: 5px;
+    fixed-height: true;
+}
+
+element {
+    padding: 8px;
+    border-radius: 6px;
+}
+
+element selected {
+    background-color: @accent;
+    text-color: @bg;
+}
+
+element-icon {
+    size: 24px;
+    padding: 0 10px 0 0;
+}

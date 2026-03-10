@@ -1,0 +1,6 @@
+# █▀▄ █▀█ █░░ █▀█ █░█ █ █▄░█
+# █▄▀ █▄█ █▄▄ █▀▀ █▀█ █ █░▀█
+
+# Use Kvantum for Qt theme consistency
+[General]
+theme=Catppuccin-Mocha

@@ -1,0 +1,51 @@
+# █▀▄ █░█ █▄░█ █▀ ▀█▀
+# █▄▀ █▄█ █░▀█ ▄█ ░█░
+
+[global]
+    monitor = 0
+    follow = mouse
+    width = 300
+    height = 100
+    origin = top-right
+    offset = 10x10
+    scale = 0
+    notification_limit = 5
+    
+    # ── Style ─────────────────────────────────────────
+    font = Cantarell 10
+    line_height = 0
+    format = "<b>%s</b>\n%b"
+    show_age_threshold = 60
+    
+    # ── Geometry ──────────────────────────────────────
+    corner_radius = 10
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    frame_color = "#89b4fa"
+    frame_width = 2
+    separator_color = frame
+    
+    # ── Progress Bar ──────────────────────────────────
+    progress_bar = true
+    progress_bar_height = 10
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+
+[urgency_low]
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    frame_color = "#89b4fa"
+    timeout = 10
+
+[urgency_normal]
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    frame_color = "#89b4fa"
+    timeout = 10
+
+[urgency_critical]
+    background = "#1e1e2e"
+    foreground = "#f38ba8"
+    frame_color = "#f38ba8"
+    timeout = 0

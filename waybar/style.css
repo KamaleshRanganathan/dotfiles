@@ -1,0 +1,54 @@
+/* █▀ ▀█▀ █▄█ █░░ █▀▀ */
+/* ▄█ ░█░ ░█░ █▄▄ ██▄ */
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "CaskaydiaCove Nerd Font";
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(30, 30, 46, 0.8);
+    color: #cdd6f4;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    color: #cdd6f4;
+}
+
+#workspaces button.active {
+    color: #89b4fa;
+}
+
+#clock, #battery, #backlight, #pulseaudio, #custom-weather, #tray, #custom-power, #custom-updates {
+    padding: 0 10px;
+    margin: 0 5px;
+}
+
+#clock {
+    color: #f5c2e7;
+}
+
+#battery.charging {
+    color: #a6e3a1;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f38ba8;
+    color: #1e1e2e;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: #1e1e2e;
+        color: #f38ba8;
+    }
+}

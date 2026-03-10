@@ -1,0 +1,161 @@
+cd HyDE
+gemini-cli   # or however you invoke it
+```
+
+---
+
+## Step 2 — The Master Prompt
+
+Copy and paste this **entire prompt** into Gemini CLI:
+
+---
+```
+You are a senior Linux dotfiles architect. I have the HyDE Hyprland rice 
+downloaded at ./HyDE. Your job is to:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 1 — DEEP ANALYSIS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Read and map the ENTIRE HyDE repo tree. List every folder and file 
+   with a one-line description of what each does.
+
+2. Identify and categorize all configs into these buckets:
+   - Core WM (hyprland.conf, hyprland keybinds, env vars, monitors)
+   - Theming (colors, wallpapers, GTK, Qt, cursors, icons)
+   - Bar (waybar config, style, modules)
+   - Launcher (rofi/wofi themes and configs)
+   - Notifications (dunst/mako)
+   - Terminal (kitty/alacritty/foot)
+   - Shell (zsh/bash configs, aliases, functions)
+   - Scripts (automation, wallpaper switcher, theme switcher, etc.)
+   - System Services (systemd user services, dbus, portals)
+   - Fonts & Assets
+
+3. Map ALL dependencies — list every package needed (pacman + AUR).
+
+4. Identify what is HARDCODED (usernames, paths, monitor names) vs 
+   what is dynamic/variable. Flag every hardcoded value.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 2 — DESIGN MY CLEAN STRUCTURE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+5. Design a NEW folder structure called ~/dotfiles with this philosophy:
+   - Each app/tool gets its own self-contained folder
+   - A single config.env file at root holds ALL user-specific variables
+     (username, monitor name, preferred terminal, browser, etc.)
+   - Every script sources config.env — no more hardcoding anywhere
+   - A themes/ folder with clean separation: one subfolder per theme
+   - Clear README.md in every major folder explaining what it does
+   - An install.sh at root that symlinks everything to correct locations
+
+   Proposed structure should look like:
+   ~/dotfiles/
+   ├── config.env          ← single source of truth for all variables
+   ├── install.sh          ← symlinks + package install
+   ├── README.md
+   ├── hypr/               ← hyprland configs split into modules
+   │   ├── hyprland.conf   ← main entry, sources others
+   │   ├── keybinds.conf
+   │   ├── windowrules.conf
+   │   ├── monitors.conf
+   │   ├── env.conf
+   │   └── animations.conf
+   ├── waybar/
+   ├── rofi/
+   ├── dunst/
+   ├── kitty/  (or your terminal)
+   ├── shell/
+   ├── themes/
+   │   ├── theme-name-1/
+   │   │   ├── colors.conf
+   │   │   ├── wallpaper.png
+   │   │   ├── waybar.css
+   │   │   └── rofi.rasi
+   │   └── theme-name-2/
+   ├── scripts/
+   │   ├── theme-switch.sh
+   │   ├── wallpaper.sh
+   │   └── ...
+   └── assets/
+       ├── fonts/
+       └── icons/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 3 — GENERATE THE FILES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+6. Now generate every config file in the new structure by:
+   - Copying HyDE's logic and aesthetics faithfully
+   - Replacing ALL hardcoded values with $VARIABLE references from config.env
+   - Splitting monolithic configs into logical modules (especially hyprland.conf)
+   - Adding a comment block at the top of EVERY file explaining:
+     # What this file controls
+     # What variables it uses from config.env
+     # How to customize it
+
+7. Generate config.env with every customizable variable, grouped and 
+   commented like:
+   # ── Monitor ─────────────────────────────
+   MONITOR_NAME=DP-1
+   MONITOR_RES=2560x1440@144
+   # ── User ────────────────────────────────
+   USERNAME=yourusername
+   # ── Apps ────────────────────────────────
+   TERMINAL=kitty
+   BROWSER=firefox
+   ...
+
+8. Generate install.sh that:
+   - Sources config.env
+   - Installs all pacman packages (with --needed flag)
+   - Installs all AUR packages via paru/yay
+   - Creates all necessary ~/.config/ symlinks
+   - Has a --dry-run flag to preview without making changes
+   - Is idempotent (safe to run multiple times)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PHASE 4 — DOCUMENTATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+9. Generate a root README.md with:
+   - Quick start (3 commands to get up and running)
+   - Full config.env variable reference table
+   - How to add a new theme
+   - How to add/remove keybinds
+   - How to change monitors
+   - Troubleshooting section
+
+10. Generate a STRUCTURE.md that is a full annotated tree of the dotfiles
+    folder explaining every file in one line.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OUTPUT FORMAT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+For each file you generate:
+- Print the full file path as a header
+- Print the complete file content
+- Do NOT skip or truncate any file
+- Generate files one at a time if needed
+
+Start with PHASE 1 analysis first and wait for my confirmation 
+before proceeding to PHASE 2 and beyond.
+```
+
+---
+
+## Step 3 — Follow-up prompts after each phase
+
+After Phase 1 analysis is done, use:
+```
+Looks good. Proceed to Phase 2 — show me the proposed folder 
+structure and confirm before generating any files.
+```
+
+After approving structure:
+```
+Structure approved. Now proceed with Phase 3. 
+Generate files one folder at a time, starting with 
+config.env and hypr/
